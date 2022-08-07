@@ -27,33 +27,21 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     
-        if ((validateInput(pilot)||validateInput(copilot)||validateInput(fuelLevel)||validateInput(cargoLevel)) === "Empty"){
-            alert("All fields are required!");
-            event.preventDefault();
-        } else if ((validateInput(pilot)||validateInput(copilot))==="Is a Number"){
-            alert("Make sure to enter valid information for each field!");
-            event.preventDefault();
-        } else if ((validateInput(fuelLevel)||validateInput(cargoLevel))==="Not a Number"){
-            alert("Make sure to enter valid information for each field!");
-            event.preventDefault();
-        } 
-    
         const pilotStatus = document.getElementById("pilotStatus");
         const copilotStatus = document.getElementById("copilotStatus");
         const fuelStatus = document.getElementById("fuelStatus");
         const cargoStatus = document.getElementById("cargoStatus");
-        const faultyItems = document.getElementById("faultyItems");
         const launchStatus = document.getElementById("launchStatus");
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         if (fuelLevel<10000) {
-            faultyItems.style.visibility = "visible";
+            list.style.visibility = "visible";
             fuelStatus.innerHTML = "Insufficient fuel for projected journey!!" 
             launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = red;
         }
         if (cargoLevel > 10000) {
-            faultyItems.style.visibility = "visible";
+            list.style.visibility = "visible";
             cargoStatus.innerHTML = "Too much mass for takeoff!!"
             launchStatus.innerHTML = "Shuttle not ready for launch";
             launchStatus.style.color = red;
