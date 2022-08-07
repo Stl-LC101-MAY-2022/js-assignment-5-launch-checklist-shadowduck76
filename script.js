@@ -2,12 +2,15 @@ const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./s
 
 window.addEventListener("load", function () {
     let form = document.querySelector("form");
-    let pilot = document.querySelector("input[name=pilotName]");
-    let copilot = document.querySelector("input[name=copilotName]");
-    let fuelLevel = document.querySelector("input[name=fuelLevel]");
-    let cargoLevel = document.querySelector("input[name=cargoLevel]");
+    list.addEventListener("submit", function(event) {
+        let pilot = document.querySelector("input[name=pilotName]");
+        let copilot = document.querySelector("input[name=copilotName]");
+        let fuelLevel = document.querySelector("input[name=fuelLevel]");
+        let cargoLevel = document.querySelector("input[name=cargoLevel]");
+        let faultyItems = document.getElementById("faultyItems");
    
-    formSubmission(this.document, form, pilot, copilot, fuelLevel, cargoLevel);
+        formSubmission(this.document, faultyItems, pilot, copilot, fuelLevel, cargoLevel);
+    });
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse = myFetch();

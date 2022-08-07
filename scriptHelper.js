@@ -26,7 +26,7 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    list.addEventListener("submit", function(event) {
+    
         if ((validateInput(pilot)||validateInput(copilot)||validateInput(fuelLevel)||validateInput(cargoLevel)) === "Empty"){
             alert("All fields are required!");
             event.preventDefault();
@@ -62,7 +62,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             launchStatus.style.color = green;
             launchStatus.innerHTML = "Shuttle is ready for launch.";
         }
-    });
+    
 }
 
 async function myFetch() {
