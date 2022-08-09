@@ -1,16 +1,27 @@
 const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
 
 window.addEventListener("load", function () {
+    const pilot = document.querySelector("input[name=pilotName]");
+    const copilot = document.querySelector("input[name=copilotName]");
+    const fuelLevel = document.querySelector("input[name=fuelLevel]");
+    const cargoLevel = document.querySelector("input[name=cargoLevel]");
+    const faultyItems = document.getElementById("faultyItems");
     let form = document.querySelector("form");
+
     form.addEventListener("submit", function(event) {
-        let pilot = document.querySelector("input[name=pilotName]");
-        let copilot = document.querySelector("input[name=copilotName]");
-        let fuelLevel = document.querySelector("input[name=fuelLevel]");
-        let cargoLevel = document.querySelector("input[name=cargoLevel]");
-        let faultyItems = document.getElementById("faultyItems");
-         formSubmission(this.document, faultyItems, pilot, copilot, fuelLevel, cargoLevel);
+        if ((validateInput(pilot)||validateInput(copilot)||validateInput(fuelLevel)||validateInput(cargoLevel)) === "Empty"){
+            alert("All fields are required!");
+         
+        } else if ((validateInput(pilot)||validateInput(copilot))==="Is a Number"){
+            alert("Make sure to enter valid information for each field!");
+            
+        } else if ((validateInput(fuelLevel)||validateInput(cargoLevel))==="Not a Number"){
+            alert("Make sure to enter valid information for each field!");
+        } 
+       formSubmission(this.document, faultyItems, pilot, copilot, fuelLevel, cargoLevel);
+        event.preventDefault();
     });
-    event.preventDefault();
+
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse = myFetch();

@@ -26,18 +26,6 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    if ((validateInput(pilot)||validateInput(copilot)||validateInput(fuelLevel)||validateInput(cargoLevel)) === "Empty"){
-        alert("All fields are required!");
-     
-    } else if ((validateInput(pilot)||validateInput(copilot))==="Is a Number"){
-        alert("Make sure to enter valid information for each field!");
-        
-    } else if ((validateInput(fuelLevel)||validateInput(cargoLevel))==="Not a Number"){
-        alert("Make sure to enter valid information for each field!");
-       
-    } 
-
-    
         const pilotStatus = document.getElementById("pilotStatus");
         const copilotStatus = document.getElementById("copilotStatus");
         const fuelStatus = document.getElementById("fuelStatus");
