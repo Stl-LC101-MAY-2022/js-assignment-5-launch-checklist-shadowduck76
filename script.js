@@ -1,25 +1,30 @@
-const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
+//const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
+/*^^^ commenting out the above line allowed me to edit the code somewhat, but then my functions would not return values properly, and then suddenly it broke again and I haven't been able to replicate it */
+const { validateInput } = require("./scriptHelper");
 
-window.addEventListener("load", function () {
-    const pilot = document.querySelector("input[name=pilotName]");
-    const copilot = document.querySelector("input[name=copilotName]");
-    const fuelLevel = document.querySelector("input[name=fuelLevel]");
-    const cargoLevel = document.querySelector("input[name=cargoLevel]");
-    const faultyItems = document.getElementById("faultyItems");
+
+window.addEventListener("load", function () {   
+    let pilot = document.querySelector("input[name=pilotName]");
+    let copilot = document.querySelector("input[name=copilotName]");
+    let fuelLevel = document.querySelector("input[name=fuelLevel]");
+    let cargoLevel = document.querySelector("input[name=cargoLevel]");
+    let faultyItems = document.getElementById("faultyItems");
     let form = document.querySelector("form");
 
     form.addEventListener("submit", function(event) {
-        if ((validateInput(pilot)||validateInput(copilot)||validateInput(fuelLevel)||validateInput(cargoLevel)) === "Empty"){
+        if (validateInput(pilot)==="Empty"||validateInput(copilot)==="Empty"||validateInput(fuelLevel)==="Empty"||validateInput(cargoLevel) === "Empty"){
             alert("All fields are required!");
-         
-        } else if ((validateInput(pilot)||validateInput(copilot))==="Is a Number"){
+            event.preventDefault();
+        } else if (validateInput(pilot)==="Is a Number"||validateInput(copilot)==="Is a Number"){
             alert("Make sure to enter valid information for each field!");
-            
-        } else if ((validateInput(fuelLevel)||validateInput(cargoLevel))==="Not a Number"){
+            event.preventDefault();
+        } else if (validateInput(fuelLevel)==="Not a Number"||validateInput(cargoLevel)==="Not a Number"){
             alert("Make sure to enter valid information for each field!");
-        } 
-       formSubmission(this.document, faultyItems, pilot, copilot, fuelLevel, cargoLevel);
-        event.preventDefault();
+            event.preventDefault();
+        } else {
+            formSubmission(document, faultyItems, pilot, copilot, fuelLevel, cargoLevel);
+        }
+        
     });
 
    let listedPlanets;
@@ -34,5 +39,4 @@ window.addEventListener("load", function () {
         let planet = pickPlanet(listedPlanets);
         addDestinationInfo(this.document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image);
     })
-   
 });
