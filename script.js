@@ -1,5 +1,4 @@
-//const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
-/*^^^ commenting out the above line allowed me to edit the code somewhat, but then my functions would not return values properly, and then suddenly it broke again and I haven't been able to replicate it */
+const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
 const { validateInput } = require("./scriptHelper");
 
 
